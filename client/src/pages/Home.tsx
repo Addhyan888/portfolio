@@ -42,9 +42,13 @@ export default function Home() {
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center"
+            className="w-40 h-40 mx-auto mb-8 rounded-full overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 ring-4 ring-purple-500/50"
           >
-            <span className="text-4xl font-bold text-white">AA</span>
+            <img 
+              src="/assets/profile.jpg" 
+              alt="Addhyan Awasthi"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
           <h1 className="text-5xl md:text-7xl font-bold">
