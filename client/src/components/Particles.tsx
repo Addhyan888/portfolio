@@ -20,17 +20,23 @@ export default function ParticlesComponent() {
       fpsLimit: 120,
       interactivity: {
         events: {
+          onClick: {
+            enable: true,
+            mode: "push",
+          },
           onHover: {
             enable: true,
-            mode: "grab",
+            mode: "repulse",
           },
+          resize: true,
         },
         modes: {
-          grab: {
-            distance: 140,
-            links: {
-              opacity: 0.5,
-            },
+          push: {
+            quantity: 4,
+          },
+          repulse: {
+            distance: 100,
+            duration: 0.4,
           },
         },
       },
@@ -46,17 +52,27 @@ export default function ParticlesComponent() {
           width: 1,
         },
         move: {
+          direction: "none",
           enable: true,
-          speed: 1,
+          outModes: {
+            default: "bounce",
+          },
+          random: false,
+          speed: 2,
+          straight: false,
         },
         number: {
           density: {
             enable: true,
+            area: 800,
           },
           value: 80,
         },
         opacity: {
           value: 0.5,
+        },
+        shape: {
+          type: "circle",
         },
         size: {
           value: { min: 1, max: 3 },
