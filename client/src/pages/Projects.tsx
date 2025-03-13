@@ -7,25 +7,25 @@ const projects = [
     title: "Physics Simulator",
     description: "Interactive physics simulations for JEE concepts",
     image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4",
-    github: "https://github.com/yourusername/physics-sim"
+    github: "https://github.com/Addhyan888/physics-sim"
   },
   {
     title: "Math Formula Visualizer",
     description: "Visual representation of mathematical formulas",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    github: "https://github.com/yourusername/math-viz"
+    github: "https://github.com/Addhyan888/math-viz"
   },
   {
     title: "Chemistry Calculator",
     description: "Advanced calculator for chemical equations",
     image: "https://images.unsplash.com/photo-1607706189992-eae578626c86",
-    github: "https://github.com/yourusername/chem-calc"
+    github: "https://github.com/Addhyan888/chem-calc"
   },
   {
     title: "Study Tracker",
     description: "Track and analyze your study patterns",
     image: "https://images.unsplash.com/photo-1499673610122-01c7122c5dcb",
-    github: "https://github.com/yourusername/study-tracker"
+    github: "https://github.com/Addhyan888/study-tracker"
   }
 ];
 
@@ -37,8 +37,19 @@ export default function Projects() {
         animate={{ opacity: 1, y: 0 }}
         className="max-w-6xl mx-auto space-y-8"
       >
-        <h1 className="text-4xl font-bold">Projects</h1>
-        
+        <div className="flex justify-between items-center">
+          <h1 className="text-4xl font-bold">Projects</h1>
+          <a
+            href="https://github.com/Addhyan888"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+          >
+            <SiGithub className="w-5 h-5" />
+            <span>View GitHub Profile</span>
+          </a>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <motion.div

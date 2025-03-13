@@ -17,6 +17,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Terminal from "@/components/Terminal";
+import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+
+type InsertMessage = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 export default function Contact() {
   const { toast } = useToast();
@@ -30,7 +37,7 @@ export default function Contact() {
   });
 
   const mutation = useMutation({
-    mutationFn: async (data: FormData) => {
+    mutationFn: async (data: InsertMessage) => {
       const res = await apiRequest("POST", "/api/contact", data);
       return res.json();
     },
@@ -50,7 +57,7 @@ export default function Contact() {
     },
   });
 
-  function onSubmit(data: FormData) {
+  function onSubmit(data: InsertMessage) {
     mutation.mutate(data);
   }
 
@@ -67,14 +74,40 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
+            className="space-y-6"
           >
             <Terminal 
               text={`> Want to get in touch?
 > Fill out the form or reach me at:
-> Email: your.email@example.com
-> LinkedIn: /in/yourprofile
-> Twitter: @yourhandle`}
+> Email: addhyan24@gmail.com`}
             />
+
+            <div className="flex gap-4">
+              <a
+                href="https://github.com/Addhyan888"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <SiGithub className="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/addhyan-awasthi-99a07630a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <SiLinkedin className="w-6 h-6" />
+              </a>
+              <a
+                href="https://x.com/7_addhyan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <SiX className="w-6 h-6" />
+              </a>
+            </div>
           </motion.div>
 
           <motion.div
