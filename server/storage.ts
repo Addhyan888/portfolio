@@ -1,39 +1,23 @@
-import { users, type User, type InsertUser } from "@shared/schema";
-
-// modify the interface with any CRUD methods
-// you might need
+import { messages, type Message, type InsertMessage } from "@shared/schema";
+import { db } from "./db";
 
 export interface IStorage {
-  getUser(id: number): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  createMessage(message: InsertMessage): Promise<Message>;
+  getMessages(): Promise<Message[]>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  currentId: number;
-
-  constructor() {
-    this.users = new Map();
-    this.currentId = 1;
+export class DatabaseStorage implements IStorage {
+  async createMessage(insertMessage: InsertMessage): Promise<Message> {
+    const [message] = await db
+      .insert(messages)
+      .values(insertMessage)
+      .returning();
+    return message;
   }
 
-  async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentId++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async getMessages(): Promise<Message[]> {
+    return await db.select().from(messages);
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
